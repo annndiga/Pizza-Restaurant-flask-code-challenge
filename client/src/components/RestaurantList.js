@@ -1,4 +1,3 @@
-// RestaurantList.js
 import React, { useEffect, useState } from 'react';
 import './RestaurantList.css'; // Import your CSS file
 
@@ -6,8 +5,7 @@ function RestaurantList() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    // Make an API call to get the list of restaurants
-    fetch('http://127.0.0.1:5555/restaurants') // Remove the leading /
+    fetch('http://localhost:5555/fetch-data')  // Fetch from your Flask app
       .then((response) => response.json())
       .then((data) => setRestaurants(data));
   }, []);

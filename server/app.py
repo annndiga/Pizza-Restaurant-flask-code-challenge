@@ -6,7 +6,7 @@ from models import Pizza, Restaurant, RestaurantPizza
 import os 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/http://127.0.0.1:5555/restaurants": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/restaurants*": {"origins": "http://localhost:3000"}})
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurant.db'
@@ -43,7 +43,7 @@ def get_restaurant_by_id(id):
         pizzas = [
             {
                 "id": pizza.id,
-                "name": pizza.pizza.name,  # Access 'name' attribute from the associated Pizza object
+                "name": pizza.pizza.name,  
                 "ingredients": pizza.pizza.ingredients
             }
             for pizza in restaurant.pizzas
@@ -92,7 +92,7 @@ def get_all_restaurant_pizzas():
     # Fetch all RestaurantPizza entries
     restaurant_pizzas = RestaurantPizza.query.all()
     
-    # Create a list to store the response data
+    #  a list to store the response data
     response_data = []
 
     for restaurant_pizza in restaurant_pizzas:
@@ -105,7 +105,7 @@ def get_all_restaurant_pizzas():
         restaurant = Restaurant.query.get(restaurant_id)
 
         if pizza and restaurant:
-            # Create a dictionary for the response data
+            # a dictionary for the response data
             entry_data = {
                 "pizza_id": pizza_id,
                 "restaurant_id": restaurant_id,
@@ -140,7 +140,7 @@ def get_restaurant_pizza_by_id(id):
         restaurant = Restaurant.query.get(restaurant_id)
 
         if pizza and restaurant:
-            # Create a dictionary for the response data
+            # a dictionary for the response data
             response_data = {
                 "pizza_id": pizza_id,
                 "restaurant_id": restaurant_id,
@@ -165,27 +165,24 @@ def get_restaurant_pizza_by_id(id):
 @app.route('/restaurant_pizzas', methods=['POST'])
 def create_restaurant_pizza():
     try:
-        data = request.get_json()  # Parse JSON data from request body
+        data = request.get_json()  
 
-        # Extract data from the JSON object
+      
         price = data.get('price')
         pizza_id = data.get('pizza_id')
         restaurant_id = data.get('restaurant_id')
 
-        # Validate the input data as needed
-
-        # Create a new RestaurantPizza entry
+       
         restaurant_pizza = RestaurantPizza(
             price=price,
             pizza_id=pizza_id,
             restaurant_id=restaurant_id
         )
 
-        # Add and commit the new entry to the database
+       
         db.session.add(restaurant_pizza)
         db.session.commit()
 
-        # Fetch the related pizza data for the response
         pizza = Pizza.query.get(pizza_id)
         if pizza:
             pizza_data = {
@@ -193,7 +190,7 @@ def create_restaurant_pizza():
                 "name": pizza.name,
                 "ingredients": pizza.ingredients
             }
-            return jsonify(pizza_data), 201  # Return pizza data with status code 201 (Created)
+            return jsonify(pizza_data), 201  
 
         return jsonify({"error": "Pizza not found"}), 404
 
