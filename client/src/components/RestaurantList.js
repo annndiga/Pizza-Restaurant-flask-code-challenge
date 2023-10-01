@@ -7,7 +7,7 @@ function RestaurantList() {
 
   useEffect(() => {
     // Make an API call to get the list of restaurants
-    fetch('/api/restaurants')
+    fetch('http://127.0.0.1:5555/restaurants') // Remove the leading /
       .then((response) => response.json())
       .then((data) => setRestaurants(data));
   }, []);
