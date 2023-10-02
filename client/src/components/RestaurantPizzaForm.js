@@ -21,7 +21,7 @@ function RestaurantPizzaForm() {
     e.preventDefault();
 
     // Make an API call to create a new RestaurantPizza entry
-    fetch('/api/restaurant_pizzas', {
+    fetch('http://127.0.0.1:5555/restaurant_pizzas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

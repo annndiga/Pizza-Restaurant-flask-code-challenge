@@ -16,10 +16,6 @@ db.init_app(app)
 
 CORS(app)
 
-@app.route('/')
-def home():
-    return 'Happy Pizza Shopping!'
-
     # Route to get a list of restaurants
 @app.route('/restaurants', methods=['GET'])
 def get_restaurants():

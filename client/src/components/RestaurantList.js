@@ -6,14 +6,16 @@ function RestaurantList() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
+    console.log('API request to /restaurants is being made');
     fetch('http://localhost:5555/restaurants')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Log the data received from the server
+        console.log('API response data:', data);
         setRestaurants(data);
       })
       .catch((error) => console.error('Fetch error:', error));
   }, []);
+  
   
   return (
     <div className="restaurant-list-container">
