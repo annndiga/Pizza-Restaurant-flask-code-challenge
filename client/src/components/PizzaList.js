@@ -15,13 +15,13 @@ function PizzaList() {
   }, []);
 
   return (
-    <div className="container"> {/* Apply a container class */}
-      <h1 className="pizza-header">Pizza List</h1> {/* Apply a header class */}
-      <ul className="pizza-list"> {/* Apply a list class */}
+    <div className="container"> 
+      <h1 className="pizza-header">Pizza List</h1> 
+      <ul className="pizza-list"> 
         {pizzas.map((pizza) => (
-          <li key={pizza.id} className="pizza-item"> {/* Apply an item class */}
-            <h2 className="pizza-name">{pizza.name}</h2> {/* Apply a name class */}
-            <p className="pizza-ingredients">Ingredients: {pizza.ingredients}</p> {/* Apply an ingredients class */}
+          <li key={pizza.id} className="pizza-item">
+            <h2 className="pizza-name">{pizza.name}</h2> 
+            <p className="pizza-ingredients">Ingredients: {pizza.ingredients}</p> 
           </li>
         ))}
       </ul>
