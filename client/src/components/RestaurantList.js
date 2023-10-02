@@ -21,8 +21,7 @@ function RestaurantList() {
     <div className="restaurant-list-container">
       <h1 className="restaurant-list-title">Explore Nearby Restaurants</h1>
       <p className="restaurant-list-description">
-        Discover a variety of delicious restaurants in your area. Whether you're
-        craving pizza, sushi, or something else, you'll find it here.
+        Discover a variety of delicious restaurants in your area. Satisfy your pizza cravings!
       </p>
       <div className="restaurant-cards">
         {restaurants.map((restaurant) => (
