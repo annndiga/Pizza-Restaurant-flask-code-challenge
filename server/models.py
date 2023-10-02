@@ -1,5 +1,7 @@
 from dbconfig import db
 from sqlalchemy import CheckConstraint
+from sqlalchemy.orm import validates
+
 
 class Pizza(db.Model):
     __tablename__ = 'pizza'

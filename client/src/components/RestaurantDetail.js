@@ -7,7 +7,7 @@ function RestaurantDetail() {
 
   useEffect(() => {
     // Make an API call to get restaurant details by ID
-    fetch(`/api/restaurants/${id}`)
+    fetch(`/http://localhost:5555/restaurants/2`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Restaurant not found');

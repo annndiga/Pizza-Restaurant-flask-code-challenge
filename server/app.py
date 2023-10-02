@@ -1,13 +1,11 @@
-from flask import Flask
-from flask_cors import CORS
+from flask import Flask, current_app, make_response, request, jsonify, g
 from dbconfig import db  
 from flask_migrate import Migrate
 from models import Pizza, Restaurant, RestaurantPizza
 import os 
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/restaurants*": {"origins": "http://localhost:3000"}})
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurant.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -15,6 +13,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 migrate = Migrate(app, db)
 
 db.init_app(app)
+
+CORS(app)
 
 @app.route('/')
 def home():

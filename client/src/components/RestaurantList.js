@@ -1,15 +1,20 @@
+// RestaurantList.js
 import React, { useEffect, useState } from 'react';
-import './RestaurantList.css'; // Import your CSS file
+import './RestaurantList.css';
 
 function RestaurantList() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5555/fetch-data')  // Fetch from your Flask app
+    fetch('http://localhost:5555/restaurants')
       .then((response) => response.json())
-      .then((data) => setRestaurants(data));
+      .then((data) => {
+        console.log(data); // Log the data received from the server
+        setRestaurants(data);
+      })
+      .catch((error) => console.error('Fetch error:', error));
   }, []);
-
+  
   return (
     <div className="restaurant-list-container">
       <h1 className="restaurant-list-title">Explore Nearby Restaurants</h1>
